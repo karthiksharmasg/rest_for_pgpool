@@ -25,13 +25,12 @@ def get_node_status():
     nodeid = request.args.get('nodeid')
     print nodeid
 
-    #cmd = 'pcp_node_info 10 localhost 9898 pcp_user pcp_pass '+nodeid
-    #try:
-    #    output = subprocess.check_output(cmd, shell=True)
-    #except:
-    #    return 'ERROR'
-    #return str(output).split(' ')[2]
-    return "OK"
+    cmd = 'pcp_node_info 10 localhost 9898 pcp_user pcp_pass '+nodeid
+    try:
+        output = subprocess.check_output(cmd, shell=True)
+    except:
+        return 'ERROR'
+    return str(output).split(' ')[2]
 
 
 @app.route('/urest/v1/pgpool/attach', methods=['POST'])  ##/urest/v1/pgpool/attach?nodeid=
